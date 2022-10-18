@@ -1,16 +1,15 @@
 from flask import Flask, render_template, request
-from datetime import datetime, timezone, timedelta
-
+from datetime import datetime
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    homepage = "<h1>楊子青Python+flask+Vercel網頁</h1>"
+    homepage = "<h1>洪詳華Python網頁</h1>"
     homepage += "<a href=/mis>MIS</a><br>"
     homepage += "<a href=/today>顯示日期時間</a><br>"
-    homepage += "<a href=/welcome?nick=tcyang>傳送使用者暱稱</a><br>"
-    homepage += "<a href=/account>網頁表單輸入實例</a><br><br>"
-    homepage += "<a href=/about>子青簡介網頁</a><br>"
+    homepage += "<a href=/welcome?nick=huahua>傳送使用者暱稱</a><br>"
+    homepage += "<a href=/account>網頁表單輸入實例</a><br>"
+    homepage += "<a href=/about>詳華簡介網頁</a><br>"
     return homepage
 
 @app.route("/mis")
@@ -19,8 +18,7 @@ def course():
 
 @app.route("/today")
 def today():
-    tz = timezone(timedelta(hours=+8))
-    now = datetime.now(tz)
+    now = datetime.now()
     return render_template("today.html", datetime = str(now))
 
 @app.route("/welcome", methods=["GET", "POST"])
@@ -30,7 +28,7 @@ def welcome():
 
 @app.route("/about")
 def about():
-    return render_template("aboutme.html")
+    return render_template("about.html")
 
 @app.route("/account", methods=["GET", "POST"])
 def account():
@@ -42,6 +40,5 @@ def account():
     else:
         return render_template("account.html")
 
-
-#if __name__ == "__main__":
-#    app.run()
+# if __name__ == "__main__":
+#     app.run()
